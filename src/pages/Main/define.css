@@ -1,0 +1,44 @@
+.flx-clm-c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flx-clm-c-c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flx-clm-c-s {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flx-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flx-row-c {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flx-row-c-c {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.g-center {
+  display: grid;
+  place-items: center;
+}
+
+/*# sourceMappingURL=define.css.map */

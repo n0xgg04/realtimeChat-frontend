@@ -1,0 +1,42 @@
+@import "../../pages/Main/define";
+
+.login-page-box-form-input{
+  margin-bottom: 10px;
+  input{
+    padding : 10px 20px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    transition: 0.2s;
+    &:hover{
+      border: 1px solid #aaa;
+    }
+
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.login-page-box-form-btn{
+  button{
+    padding : 10px 20px;
+    background: #097cfe;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    font-size: 15px;
+    color: #fff;
+    height: 45px;
+    font-family: "Roboto", sans-serif;
+    transition: 0.2s;
+    &:hover{
+      border: 1px solid #aaa;
+    }
+
+    &:focus{
+      outline: none;
+    }
+  }
+}

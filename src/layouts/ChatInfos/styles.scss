@@ -1,0 +1,26 @@
+@import "../../pages/Main/define";
+
+.messenger-info{
+  .messenger-info_head{
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+
+    .messenger-info_head-avatar img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .messenger-info_head-name{
+      display: flex;
+      flex-direction: column;
+    }
+    
+
+  }
+}
+
+
+
