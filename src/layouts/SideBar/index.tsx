@@ -1,6 +1,7 @@
 import React from "react";
 import { IoIosLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
+import logout from '../../services/auth/logout'
 export default function SideBar(){
     return (
         <div className="sideBar select-none h-full flex flex-column justify-center items-end pb-[10px]">
@@ -13,7 +14,7 @@ export default function SideBar(){
                              </div>
                              <span>Trang cá nhân</span>
                          </li>
-                         <li>
+                         <li onClick={logout}>
                              <div className="circleK">
                                  <IoIosLogOut className="text-[20px]"/>
                              </div>

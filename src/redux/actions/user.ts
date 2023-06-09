@@ -1,38 +1,13 @@
-import { createAction} from "@reduxjs/toolkit";
+import {createAction} from "@reduxjs/toolkit";
 
-interface SetUserNamePayload {
-    name: string;
-}
+export const setUsername = createAction<string>("user/setUsername");
+export const setUserId = createAction<string>("user/setUserId");
+export const setToken = createAction<string>("user/setToken");
+export const setAvatar = createAction<string>("user/setAvatar");
 
-interface SetUserIdPayload {
-    id: string;
-}
-
-interface SetUserTokenPayload {
-    token: string;
-}
-
-interface SetUserAvatarPayload {
-    avatar: string;
-}
-
-interface SetUserAvatarColorPayload {
-    color: string;
-}
-
-export const setUserName = createAction<SetUserNamePayload>('user/SET_USERNAME');
-export const setUserId = createAction<SetUserIdPayload>('user/SET_USERID');
-export const setUserToken = createAction<SetUserTokenPayload>('user/SET_USERTOKEN');
-export const setUserAvatar = createAction<SetUserAvatarPayload>('user/SET_USERAVATAR');
-export const setUserAvatarColor = createAction<SetUserAvatarColorPayload>('user/SET_USERAVATARCOLOR');
-export const setUserData = createAction('user/SET_USERDATA', (payload: {
-    userId: string;
-    userName: string;
-    userToken: string;
-    userAvatar: string;
-    userAvatarColor: string;
-}) => {
-    return {
-        payload: payload
-    }
-});
+export const setUserData = createAction<{
+    username: string,
+    user_id: string,
+    token: string,
+    avatar: string
+}>("user/setUserData");

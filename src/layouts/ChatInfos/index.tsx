@@ -2,24 +2,9 @@ import React from "react";
 import './styles.scss'
 import {IoIosCall} from "react-icons/io";
 import {BsFillCameraVideoFill} from "react-icons/bs";
-import {useDispatch, useSelector} from "react-redux";
 const testAvt : string = "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/04/p2.jpg"
 
 export default function ChatInfo(){
-    const dispatch = useDispatch();
-
-    dispatch(
-        {
-            type: "SET_USER",
-            payload: {
-                name: "Quân Đào",
-            }
-        }
-    )
-
-    const selector = useSelector((state : any) => state.userReducer);
-
-    console.log(selector)
 
     return (
         <div className="messenger-info h-100vh bdr-l-1s-eee">

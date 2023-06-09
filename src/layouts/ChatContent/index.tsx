@@ -6,17 +6,13 @@ import ChatHistory from "./components/ChatHistory";
 import './styles.scss'
 import React from "react";
 import {HiOutlineDotsHorizontal} from "react-icons/hi";
-import {useSelector} from "react-redux";
 
 const testAvt : string = "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/04/p2.jpg"
 
 export default function ChatContent() {
     const inputRef = React.useRef<HTMLInputElement>(null);
-    let userReducer = useSelector((state : any) => state.userReducer);
-
     React.useEffect(() => {
-        console.log(userReducer)
-    },[userReducer])
+    },[])
     const changeInfoShow = (e: React.ChangeEvent<HTMLInputElement>) => {
         let messenger = document.querySelector('.messenger') as HTMLElement;
         if (!e.target.checked) {
