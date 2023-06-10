@@ -2,16 +2,34 @@ import {BsThreeDots} from "react-icons/bs";
 import {AiFillDelete, AiTwotonePushpin} from "react-icons/ai";
 import {IoIosNotifications, IoMdArchive} from "react-icons/io";
 import {IoCheckmarkDoneCircle} from "react-icons/io5";
+import {useDispatch} from "react-redux";
+import {deleteChat, openChat} from "../../../services/chat/chatController";
 import React from "react";
 
 interface IItemUserProps {
     name : string,
     lastMessage : string,
     avatar : string
+    conversationId : string | number | null
 }
+
+
 export default function ItemUser(Props : IItemUserProps) : JSX.Element{
+    const dispatch = useDispatch();
+    const deleteConversation = () => {
+       deleteChat(dispatch, Props.conversationId)
+    }
+
+    const openSelector = (e : React.ChangeEvent<HTMLInputElement>) => {
+
+    }
+
+    const openChatbox = () => {
+        openChat(dispatch, Props.conversationId)
+    }
+
     return (
-        <li className="messenger-list_item w-full">
+        <li onClick={openChatbox} className="messenger-list_item w-full mt-[5px] cursor-pointer" key={Props.conversationId}>
             <div className="messenger-list_item-avatar">
                 <img src={Props.avatar} alt="avatar"/>
             </div>
@@ -24,7 +42,7 @@ export default function ItemUser(Props : IItemUserProps) : JSX.Element{
                 </div>
             </div>
             <div className="messenger-list_item--tool">
-                <input id="tooltip-item" type="checkbox" className="messenger-list_item--tool-checkbox"/>
+                <input onChange={openSelector} id="tooltip-item" type="checkbox" className="messenger-list_item--tool-checkbox"/>
                 <label htmlFor="tooltip-item" className="messenger-list_item--tool-icon">
                     <BsThreeDots/>
                 </label>
@@ -54,7 +72,7 @@ export default function ItemUser(Props : IItemUserProps) : JSX.Element{
                             </div>
                             <span>Archive</span>
                         </li>
-                        <li className="messenger-list_item--tool-tooltip-item">
+                        <li onClick={deleteConversation} className="messenger-list_item--tool-tooltip-item">
                             <div className="icon-pin">
                                 <AiFillDelete className="iconIcon"/>
                             </div>

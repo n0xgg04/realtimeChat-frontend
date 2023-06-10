@@ -1,24 +1,21 @@
 import React from "react";
-interface IChatHistoryProps {
-    history : Array<any>
-}
-export default React.memo(function (Props : IChatHistoryProps) : JSX.Element{
+import {messagesInterface} from '../../../../redux/actions/userConversationList'
+import {useSelector} from "react-redux";
+
+export default React.memo(function () : JSX.Element{
+    const user = useSelector((state : any) => state.user);
+    const conversation = useSelector((state : any) => state.userConversationList).userConversationList
+
     return (
         <div className="messenger-content_body-message">
-            {Props.history.map((item : {
-                   avatar : string,
-                   message : string,
-                   name : string,
-                   time : string | null,
-                   isYou : boolean
-                },index : number) =>
-                <div className={"messenger-content_body-message-item " + (item.isYou ? "user-me" : "user-not-you")} key={index}>
+            {conversation[user.conversationOpening].conversation_messages.map((item : messagesInterface,index : number) =>
+                <div className={"messenger-content_body-message-item " + (item.message_sender === user.username ? "user-me" : "user-not-you")} key={index}>
                     <div className="messenger-content_body-message-item-avatar">
-                        <img src={item.avatar} alt="avatar"/>
+                        <img src={conversation[user.conversationOpening].conversation_avatar} alt="avatar"/>
                     </div>
                     <div className="messenger-content_body-message-item-content">
                         <div className="messenger-content_body-message-item-content-text">
-                            <span>{item.message}</span>
+                            <span>{item.message_content}</span>
                         </div>
                     </div>
                 </div>

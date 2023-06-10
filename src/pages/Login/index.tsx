@@ -1,10 +1,9 @@
 import React from 'react';
 import InputForm from '../../components/InputForm';
 import LogoImage from '../../components/LogoImage';
-import axios from 'axios';
 import './styles.scss'
-import config from '../../config';
 import {useNavigate} from "react-router-dom";
+import {login} from "../../services/auth";
 
 
 export default function Login(): JSX.Element {
@@ -13,23 +12,14 @@ export default function Login(): JSX.Element {
     const warning = React.useRef<string>("");
     const [showWarning, setShowWarning] = React.useState<boolean>(false);
     const navigate = useNavigate();
-    const handLogin = () => {
-        console.log("Login", usernameRef.current?.value, passwordRef.current?.value)
-        axios.post(`${config.apiUrl}/auth/login`, {
-            username: usernameRef.current?.value,
-            password: passwordRef.current?.value
-        }).then((res) => {
-            return res.data;
-        }).then((data) => {
-            if (data.status === "error") {
-                warning.current = data.message;
-                setShowWarning(true);
-            } else {
-                localStorage.setItem("token", data.token);
+    const handLogin = async() => {
+        await login(usernameRef.current?.value as string, passwordRef.current?.value as string,
+            (token: string) => {
+                console.log("Login success", token)
                 navigate('/')
-            }
-        }).catch((err) => {
-            console.log(err);
+        }, (message : string) => {
+                warning.current = message;
+                setShowWarning(true);
         })
     }
 
