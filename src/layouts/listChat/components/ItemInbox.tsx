@@ -14,7 +14,7 @@ interface IItemUserProps {
 }
 
 
-export default function ItemUser(Props : IItemUserProps) : JSX.Element{
+export default React.memo(function ItemUser(Props : IItemUserProps) : JSX.Element{
     const dispatch = useDispatch();
     const deleteConversation = () => {
        deleteChat(dispatch, Props.conversationId)
@@ -83,4 +83,4 @@ export default function ItemUser(Props : IItemUserProps) : JSX.Element{
             </div>
         </li>
     )
-}
+})

@@ -19,7 +19,7 @@ function RouterPage() : JSX.Element {
         <Provider store={store}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Main/>}/>
+                    <Route path="/t/:conversationId" element={<Main/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/test" element={<Test/>}/>
                 </Routes>

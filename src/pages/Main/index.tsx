@@ -11,11 +11,13 @@ import SideBar from '../../layouts/SideBar';
 import Chat from '../../layouts/ChatContainer';
 import {getUserInfo} from '../../services/user';
 import userInit from '../../services/user/init'
+import {useParams} from "react-router-dom"
 
 
 export default function Main() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const {conversationId} = useParams();
 
     React.useEffect(() => {
         getUserInfo().then((res : any) => {
@@ -25,7 +27,7 @@ export default function Main() {
         })
 
         return () => {
-            console.log('Main unmount');
+            console.log('Main unmount' + conversationId)
         };
     }, [dispatch, navigate]);
 

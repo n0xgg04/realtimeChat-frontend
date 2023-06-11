@@ -4,20 +4,30 @@ html{
    font-size: 16.5px;
 }
 
+body{
+  overflow-y: hidden;
+}
+
+
 .messenger-content{
   display: grid;
+  height: 100vh;
   grid-template-areas: "header" "chat-content" "input";
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 65px auto 10%;
+  grid-template-columns: 100%;
   .messenger-content_body{
     grid-area: chat-content;
-    margin-top: 10px;
     padding: 0 20px;
-    height: 100%;
     overflow-y: auto;
+
+    &:first-child{
+      margin-top: 10px;
+    }
+
     .messenger-content_body-message{
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 3px;
 
       .messenger-content_body-message-item{
         display: flex;
@@ -88,6 +98,7 @@ html{
         font-size: 0.9rem;
       }
 
+
       &:focus{
         outline: none;
       }
@@ -103,7 +114,7 @@ html{
     grid-area: header;
     display: flex;
     flex-direction: row;
-    height: 65px;
+    height: 100%;
     align-items: center;
     padding: 0 20px;
     gap: 10px;
@@ -147,8 +158,8 @@ html{
 
     .messenger-content_head-avatar{
       img{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         object-fit: cover;
         border: #d0cbcb 1px solid;
@@ -169,4 +180,40 @@ html{
       font-size: 1.3rem;
         color : #fff;
     }
+}
+
+.animation-hidden{
+    animation: hidden 0.2s ease-in-out forwards;
+}
+
+.animation-show{
+    animation: show 0.2s ease-in-out forwards;
+}
+
+@keyframes hidden{
+    0%{
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100%{
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes show{
+    0%{
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.messenger-content_input-item-form{
+  transition: width 0.2s ease-in-out;
 }

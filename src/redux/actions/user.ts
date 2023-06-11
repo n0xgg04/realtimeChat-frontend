@@ -5,7 +5,6 @@ export const setUserId = createAction<string>("user/setUserId");
 export const setToken = createAction<string>("user/setToken");
 export const setAvatar = createAction<string>("user/setAvatar");
 export const SetIsCreatingConversation = createAction<boolean>("user/setIsCreateConversation");
-
 export const setConversationOpening = createAction<string | null | number>("user/setConversationOpening");
 
 export const setUserData = createAction<{

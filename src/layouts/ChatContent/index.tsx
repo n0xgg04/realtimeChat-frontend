@@ -1,25 +1,18 @@
-import {IoCall, IoSend} from "react-icons/io5";
-import {BsCameraVideoFill, BsCardImage, BsFiletypeGif} from "react-icons/bs";
-import {AiOutlinePlus} from "react-icons/ai";
-import {LuSticker} from "react-icons/lu";
+import {IoCall} from "react-icons/io5";
+import {BsCameraVideoFill} from "react-icons/bs";
 import ChatHistory from "./components/ChatHistory";
 import './styles.scss'
 import React from "react";
 import {HiOutlineDotsHorizontal} from "react-icons/hi";
-import {useSelector, useDispatch} from "react-redux";
-import {createNewConversation, sendMessage as userSendMessage} from "../../services/chat/chatController";
-
+import {useSelector} from "react-redux";
+import InputChat from "./components/InputChat"
 const testAvt : string = "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/04/p2.jpg"
 
 
-
 export default React.memo(function ChatContent() {
-    const inputRef = React.useRef<HTMLInputElement>(null);
     const user = useSelector((state : any) => state.user)
     const conversation = useSelector((state : any) => state.userConversationList).userConversationList
-    const dispatch = useDispatch();
     const createConversationToUsername = React.useRef<HTMLInputElement>(null);
-
 
     const changeInfoShow = (e: React.ChangeEvent<HTMLInputElement>) => {
         let messenger = document.querySelector('.messenger') as HTMLElement;
@@ -32,21 +25,7 @@ export default React.memo(function ChatContent() {
         }
     }
 
-    const sendMessage = () => {
-        if(user.isCreatingConversation){
-            console.log("Add new con ",conversation)
-            createNewConversation(conversation, user, createConversationToUsername, testAvt, dispatch)
-        }else{
-            userSendMessage(dispatch, user.conversationOpenening, {
-                message_id : Math.random().toString(36).substring(7),
-                message_content : inputRef.current?.value as string,
-                message_sender : user.username,
-                message_time : new Date().getTime().toLocaleString(),
-            })
-        }
-    }
 
-    console.log("All conversation:",conversation)
 
 return (
     <div className="messenger-content">
@@ -96,27 +75,7 @@ return (
             }
 
         </div>
-        <div className="messenger-content_input ">
-            <div className="messenger-content_input-item alg-self-center">
-                <AiOutlinePlus className="input-item-circle flex-to-mid"/>
-            </div>
-            <div className="messenger-content_input-item-2 flex-to-mid">
-                <BsCardImage/>
-            </div>
-            <div className="messenger-content_input-item-2 flex-to-mid">
-                <LuSticker/>
-            </div>
-
-            <div className="messenger-content_input-item-2 flex-to-mid">
-                <BsFiletypeGif/>
-            </div>
-            <div className="messenger-content_input-item-2 flex-to-mid flx-grow rounded-full">
-                <input ref={inputRef} type="text" className="messenger-content_input-item-form text-black" placeholder="Aa"/>
-            </div>
-            <div onClick={sendMessage} className="cursor-pointer messenger-content_input-item-2 flex-to-mid">
-                <IoSend/>
-            </div>
-        </div>
+        <InputChat createConversationToUsername={createConversationToUsername}/>
     </div>
     )
 })

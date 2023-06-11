@@ -1,11 +1,11 @@
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) and (min-width: 740px){
   .sideBar{
     display: none !important;
   }
 
   .messenger{
-    grid-template-areas: "list chat info";
-    grid-template-columns: calc(20% + 50px) auto 20%;
+    grid-template-areas: "list chat info" !important;
+    grid-template-columns: calc(20% + 50px) auto 20% !important;
   }
 }
 
@@ -15,18 +15,16 @@
         grid-template-columns: calc(20% + 50px) auto !important;
     }
 
-    .info{
+    .messenger-info{
         display: none !important;
     }
 
      .sideBar{
-            display: none !important;
+        display: none !important;
      }
 
    .messenger-content_head-action_info{
      display: none !important;
    }
-
-
 
 }

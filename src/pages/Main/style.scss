@@ -106,7 +106,7 @@ body{
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: 10px;
+    padding: 10px 5px;
     width: 100%;
     height: 15%;
     margin-bottom: 5px;
@@ -158,7 +158,7 @@ body{
       gap: 10px;
       padding: 5px 10px;
       border-radius: 10px;
-      width: 90%;
+      width: 96%;
 
       .messenger-list_item--tool{
         position: relative;
@@ -308,6 +308,13 @@ body{
   }
 }
 
+.messenger-content_input-item-form{
+  padding : 7px 15px !important;
+}
+
+.messenger-content_head{
+  height: 60px !important;
+}
 
 //! NOT FOR HARDCODE
 .flex-to-mid{

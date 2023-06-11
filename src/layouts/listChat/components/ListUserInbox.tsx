@@ -7,20 +7,7 @@ export default function ListUserInbox(): JSX.Element {
     const conversationList = useSelector(
         (state : any) => state.userConversationList
     ).userConversationList ;
-
-    console.log("Conversation List:",conversationList)
-
-    // (
-    //     <ItemInbox
-    //         avatar={conversationList[item]?.conversation_avatar || ""}
-    //         lastMessage={"You: vcl"}
-    //         name={item.conversation_name || "Unknown"}
-    //         key={item}
-    //         conversationId={item.conversation_id}
-    //     />
-    // )
-
-    console.log(Object.keys(conversationList))
+    const user = useSelector((state : any) => state.user);
 
     return (
         <>
@@ -29,7 +16,14 @@ export default function ListUserInbox(): JSX.Element {
                     (item: any) : JSX.Element => (
                         <ItemInbox
                             avatar={conversationList[item]?.conversation_avatar || ""}
-                            lastMessage={"You: vcl"}
+                            lastMessage={`
+                                ${conversationList[item]?.conversation_messages[
+                            conversationList[item]?.conversation_messages.length - 1
+                                ]?.message_sender === user.username ? "You : " : ""}
+                                ${conversationList[item]?.conversation_messages[
+                                    conversationList[item]?.conversation_messages.length - 1
+                                ]?.message_content || ""}
+                            `}
                             name={conversationList[item]?.conversation_name || "Unknown"}
                             key={item}
                             conversationId={item}

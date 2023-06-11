@@ -4,7 +4,7 @@ import {
     deleteConversation
 } from "../../redux/actions/userConversationList";
 import { setConversationOpening } from "../../redux/actions/user";
-import {messagesInterface} from "../../redux/actions/userConversationList";
+
 
 export function createNewConversation(conversation: any, user: any, createConversationToUsername: any, avatar: any, dispatch: any) {
     let newConversationPayload = {
@@ -28,16 +28,16 @@ export function openChat(dispatch: any, conversationId: string | number | null) 
     console.log("open conversation", conversationId);
 }
 
-export function addMessage(dispatch: any, conversationId: string | number | null, message: messagesInterface) {
-    dispatch(addMessageToConversation({conversation_id : conversationId, message : message}));
+export function sendMessage(dispatch: any, user: any, message: {
+    message_sender: any;
+    message_content: string;
+    message_time: string;
+    message_id: string | number;
+}) {
+    dispatch(addMessageToConversation({conversation_id: user.conversationOpening, message: {
+            message_id: Math.random().toString(36).substr(2, 9),
+            message_content: message.message_content,
+            message_sender: user.username,
+            message_time: new Date().toLocaleTimeString()
+    }}));
 }
-
-export function sendMessage(dispatch: any, conversationId: string | number | null,message: messagesInterface) {
-    addMessage(dispatch, conversationId, {
-        message_id : Math.random().toString(36).substring(7),
-        message_content : message.message_content,
-        message_sender : message.message_sender,
-        message_time : new Date().toLocaleString()
-    });
-}
-
