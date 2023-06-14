@@ -32,12 +32,14 @@ export function sendMessage(dispatch: any, user: any, message: {
     message_sender: any;
     message_content: string;
     message_time: string;
+    user_id : string | number;
     message_id: string | number;
 }) {
     dispatch(addMessageToConversation({conversation_id: user.conversationOpening, message: {
             message_id: Math.random().toString(36).substr(2, 9),
             message_content: message.message_content,
             message_sender: user.username,
+            user_id : user.user_id,
             message_time: new Date().toLocaleTimeString()
     }}));
 }

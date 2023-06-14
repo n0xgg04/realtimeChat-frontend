@@ -3,6 +3,7 @@ import SearchBar from "../../components/searchBar";
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {IoCreateOutline} from "react-icons/io5";
+import {getChatList} from "./../../services/chat/getData"
 
 export default function ListChat() : JSX.Element{
     const user = useSelector((state : any) => state.user);
@@ -12,9 +13,6 @@ export default function ListChat() : JSX.Element{
         dispatch({type : "user/setIsCreateConversation", payload : !user.isCreatingConversation})
     }
 
-    React.useEffect(() => {
-
-    },[user])
     return (
         <div className="messenger_list select-none">
             <div className="pt-[10px] w-full px-[15px]">

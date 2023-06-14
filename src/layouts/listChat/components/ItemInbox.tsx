@@ -4,6 +4,7 @@ import {IoIosNotifications, IoMdArchive} from "react-icons/io";
 import {IoCheckmarkDoneCircle} from "react-icons/io5";
 import {useDispatch} from "react-redux";
 import {deleteChat, openChat} from "../../../services/chat/chatController";
+import {useNavigate} from "react-router-dom";
 import React from "react";
 
 interface IItemUserProps {
@@ -16,6 +17,7 @@ interface IItemUserProps {
 
 export default React.memo(function ItemUser(Props : IItemUserProps) : JSX.Element{
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const deleteConversation = () => {
        deleteChat(dispatch, Props.conversationId)
     }
@@ -26,6 +28,7 @@ export default React.memo(function ItemUser(Props : IItemUserProps) : JSX.Elemen
 
     const openChatbox = () => {
         openChat(dispatch, Props.conversationId)
+        navigate(`/t/${Props.conversationId}`)
     }
 
     return (

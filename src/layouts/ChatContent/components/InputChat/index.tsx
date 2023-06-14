@@ -5,6 +5,10 @@ import {IoSend} from "react-icons/io5";
 import React from "react";
 import {createNewConversation, sendMessage as userSendMessage} from "../../../../services/chat/chatController";
 import {useSelector, useDispatch} from "react-redux";
+import {send} from '../../../../services/chat/send'
+import {useParams} from "react-router-dom";
+import {SocketContext} from "../../../../pages/Main";
+import {useContext} from "react";
 
 interface InputChatProps{
     createConversationToUsername : any
@@ -16,6 +20,15 @@ export default function InputChat({createConversationToUsername} : InputChatProp
     const user = useSelector((state : any) => state.user)
     const conversation = useSelector((state : any) => state.userConversationList).userConversationList
     const dispatch = useDispatch();
+    const {conversationId} = useParams();
+    const socketIO = useContext(SocketContext);
+
+    React.useEffect(() => {
+        if(inputRef.current){
+            inputRef.current.focus();
+        }
+    }, [])
+
 
 
     const checkInputToHideIcon = (e : any) => {
@@ -50,13 +63,21 @@ export default function InputChat({createConversationToUsername} : InputChatProp
         if(user.isCreatingConversation){
             createNewConversation(conversation, user, createConversationToUsername, "", dispatch)
         }else{
+            if(inputRef.current?.value.length === 0) return;
+            socketIO.emit("send-message", {
+                conversation_id : conversationId,
+                message_content : inputRef.current?.value,
+                token : user.token
+            })
             let messageContent : string = inputRef.current?.value as string;
+            send(messageContent, conversationId as string)
             inputRef.current!.value = "";
 
             userSendMessage(dispatch, user, {
                 message_id : Math.random().toString(36).substring(7),
                 message_content : messageContent,
                 message_sender : user.username,
+                user_id : user.user_id,
                 message_time : new Date().getTime().toLocaleString(),
             })
         }

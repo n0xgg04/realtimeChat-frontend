@@ -1,4 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
+import {ListConversationInterface} from "../../datatypes";
 
 interface ConversationData {
     conversation_name: string | null | number;
@@ -12,6 +13,7 @@ export interface messagesInterface{
     message_id : string | number,
     message_content : string,
     message_sender : string,
+    user_id : string | number,
     message_time : string | Date
 }
 
@@ -23,3 +25,5 @@ export const addMessageToConversation = createAction<{
     conversation_id: string | number | null,
     message: messagesInterface
 }>("conversation/addMessageToConversation");
+
+export const loadConversationList = createAction<ListConversationInterface> ("conversation/loadConversationList")

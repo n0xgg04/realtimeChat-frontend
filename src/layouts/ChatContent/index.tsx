@@ -6,6 +6,7 @@ import React from "react";
 import {HiOutlineDotsHorizontal} from "react-icons/hi";
 import {useSelector} from "react-redux";
 import InputChat from "./components/InputChat"
+import {useParams} from "react-router-dom";
 const testAvt : string = "https://cdn.sforum.vn/sforum/wp-content/uploads/2022/04/p2.jpg"
 
 
@@ -13,6 +14,8 @@ export default React.memo(function ChatContent() {
     const user = useSelector((state : any) => state.user)
     const conversation = useSelector((state : any) => state.userConversationList).userConversationList
     const createConversationToUsername = React.useRef<HTMLInputElement>(null);
+    const {conversationId} = useParams()
+    if(conversationId === undefined) return <></>
 
     const changeInfoShow = (e: React.ChangeEvent<HTMLInputElement>) => {
         let messenger = document.querySelector('.messenger') as HTMLElement;
@@ -39,7 +42,7 @@ return (
                                     <img src={testAvt} alt="avatar"/>
                                 </div>
                                 <div className="messenger-content_head-info">
-                                    <span className="messenger-content_head-info_name tx-sz-85 tx-bold-500">{conversation[user.conversationOpening].conversation_name}</span>
+                                    <span className="messenger-content_head-info_name tx-sz-85 tx-bold-500">{conversation[conversationId].conversation_name}</span>
                                     <span className="messenger-content_head-info-active">Active</span>
                                 </div>
                             </>

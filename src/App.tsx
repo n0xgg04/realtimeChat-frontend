@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import RouterPage from "./routes";
 import {configureStore} from "@reduxjs/toolkit";
 import allReducers from "./redux/reducers";
+import Helmet from "react-helmet"
 
 const store  = configureStore({
     reducer: allReducers,
@@ -11,7 +12,10 @@ const store  = configureStore({
 function App() {
   return (
       <Provider store={store}>
-        <RouterPage/>
+          <Helmet>
+                <title>Messenger</title>
+          </Helmet>
+          <RouterPage/>
       </Provider>
   );
 }
